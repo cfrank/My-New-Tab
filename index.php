@@ -47,7 +47,7 @@
             </div>
             <div id="content">
                 <!-- Links -->
-                <div id="content-ln" class="show">
+                <section id="content-ln" class="show">
                     <div class="inner-content">
                         <!-- Fixed links -->
                         <div id="top-row-links" class="clearfix">
@@ -78,9 +78,9 @@
                     <div id="editLinks">
                         <span id="editInner">Edit</span>
                     </div>
-                </div>
+                </section>
                 <!-- File upload -->
-                <div id="content-fu" class="a-vert">
+                <section id="content-fu" class="a-vert">
                     <div class="inner-content" id="inner-fu">
                         <div id="fu-box">
                             <img id="imageLoading" src="assets/progress.gif" width="470" height="40" alt="Please wait..." />
@@ -94,11 +94,18 @@
                             <p>Max file size 120MB - All formats Valid</p>
                         </form>
                     </div>
-                </div>
+                </section>
                 <!-- Where the weather is placed using PHP -->
-                <div id="content-fb" class="a-vert">
-                    <?php include 'assets/weather.php'; ?>
-                </div>
+                <section id="content-fb" class="a-vert">
+                    <?php
+                        // The weather PHP file, gets information from
+                        // Weather underground, and formats it. Then
+                        // formats and prints the variables into HTML
+                        // Whch is echo'd to the page.
+                        include 'assets/weather.php'; 
+                    ?>
+                    
+                </section>
             </div>
         </div>
     </div>

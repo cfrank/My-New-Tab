@@ -7,7 +7,7 @@
         Open and read JSON-  
     */
     // API string for Weather Underground 
-    $api_string         = "<ENTER YOUR API KEY>";
+    $api_string         = "<API_KEY>";
     // Put the getIP() function into a variable
     $user_ip            = getIP();
     // URL of the api

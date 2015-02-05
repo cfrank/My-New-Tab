@@ -20,15 +20,15 @@ function init()
     bubblingSpan();
     loadExecute();
 }
-// {{{ Build Search
+// Build Search
 var grabSearch          = document.getElementById("search"),
     search              = '<input type="text" id="q" value="" onpaste="query(event, this.value);" onkeypress="query(event, this.value);" autofocus autocomplete="off" />';
 grabSearch.innerHTML    = search;
-// }}}
-// {{{ Search Engines
+
+// Search Engines
 var engines = [
     //  [Key Code], [Search URL],   [Home Page Link],   [Favicon]
-    ["",    "https://www.duckduckgo.com/?q=",                   "https://www.duckduckgo.com",       "http://www.cfrank.org/f/0RIxiU.ico"],
+    ["",    "https://www.google.com/#q=",                       "https://www.google.com",           "https://www.google.com/favicon.ico"],
     ["!d",  "https://www.duckduckgo.com/?q=",                   "https://www.duckduckgo.com",       "http://www.cfrank.org/f/0RIxiU.ico"],
     ["!g",  "https://www.google.com/#q=",                       "https://www.google.com",           "https://www.google.com/favicon.ico"],
     ["!t",  "https://translate.google.com/?vi=",                "https://translate.google.com/",    "https://translate.google.com/favicon.ico"],
@@ -36,13 +36,13 @@ var engines = [
     ["!y",  "https://www.youtube.com/results?search_query=",    "https://www.youtube.com",          "https://youtube.com/favicon.ico"],
     ["!w",  "https://en.wikipedia.org/w/index.php?search=",     "https://www.en.wikipedia.org",     "http://en.wikipedia.org/favicon.ico"]
 ];
-// }}}
-// {{{ Handle Search
+
+// Handle Search
 function query(e, v)
 {
     var key         = e.keyCode || e.which,
         input       = document.getElementById("q");
-    // Search Engine
+    // Check for search engine
     if(v.length === 2 && key !== 13 && v.lastIndexOf("!") !== -1)
     {
         var en = v.lastIndexOf("!"); // Engine Selected
@@ -63,7 +63,7 @@ function query(e, v)
     // On enter
     if(key === 13)
     {
-        if(engineLink != null && engineLink === engines[2][1])
+        if(engineLink != null && engineLink === engines[3][1])
         {
             var lang    = ["ru", "en"];
             if(v.match(/^[\x20-\x7E]+$/))
@@ -112,8 +112,8 @@ function query(e, v)
         }
     }
 }
-// }}}
-// {{{ Preload Favicons
+
+// Preload Favicons
 function preloader()
 {
     if(document.images)
@@ -149,10 +149,11 @@ function addLoadEvent(func)
     }
 }
 addLoadEvent(preloader);
-// }}}
-// {{{ Handle the clicking of Span tags
+
+// Handle the clicking of Span tags
 function bubblingSpan()
 {
+    // Add bubbling function to <span> tags
     [].forEach.call(document.querySelectorAll('span'), function(el)
     {
         el.addEventListener('click', function()
@@ -163,8 +164,8 @@ function bubblingSpan()
         }, false);
     });
 }
-// }}}
-// {{{ Handle the clicking of edit divs
+
+// Handle the clicking of edit divs
 var editLinkButtons = document.getElementsByClassName("editLinkToggle");
 for(var inc = 0; inc < editLinkButtons.length; ++inc)
 {
@@ -175,19 +176,19 @@ for(var inc = 0; inc < editLinkButtons.length; ++inc)
             editLinkButtonClick(idN);
         }
 }
-// }}}
-// {{{ Start editing links
+
+// Start editing links
 document.getElementById("editLinks").onclick = function() { edit(); }
-// }}}
-// {{{ Show progress gif on form submit
+
+// Show progress gif on form submit
 document.getElementById("fu-form").onsubmit = function()
 {
     var box = document.getElementById("fu-box");
     box.style.height    = "40px";
     box.style.opacity   = "1";
 }
-// }}}
-// {{{ Load any and all Localstorage Variables (Custom Links
+
+// Load any and all Localstorage Variables (Custom Links
 function loadExecute()
 {
     cfChangesMade       = (localStorage["cfnewtab.changes.made"] === "true");
@@ -208,8 +209,8 @@ function loadExecute()
         linkHTML(customThree, cfCustomThreeVal);
     }
 }
-// }}}
-// {{{ Fork function for when a span tag is clicked
+
+// Fork function for when a span tag is clicked
 function spanClicked(nameOfClass, parentId, elemId)
 {
     // Handle the clicking of header links
@@ -226,8 +227,8 @@ function spanClicked(nameOfClass, parentId, elemId)
         return false;
     }
 }
-// }}}
-// {{{ Functionf or when a edit link box is clicked
+
+// Function for when a edit link box is clicked
 function editLinkButtonClick(idN)
 {
     if(idN === "editLink1")
@@ -248,15 +249,15 @@ function editLinkButtonClick(idN)
     killPop(2);
     bubblingSpan();
 }
-// }}}
-// {{{ Find span tag id for header links and send it to next function
+
+// Find span tag id for header links and send it to next function
 function headerResponse(id)
 {
     var idOfContent = "content-" + id; 
     addHeaderClass(idOfContent);
 }
-// }}}
-// {{{ Display popup and overlay
+
+// Display popup and overlay
 function addLink(id)
 {
     var overlay = document.getElementById("overlay"),
@@ -265,8 +266,8 @@ function addLink(id)
     pop.style.display       = "block";
     input.focus();
 }
-// }}}
-// {{{ Handle showing and hiding tabs
+
+// Handle showing and hiding tabs
 function addHeaderClass(contentId)
 {
     var elem        = document.getElementById(contentId),
@@ -285,8 +286,8 @@ function addHeaderClass(contentId)
         lastElem = contentId;
     }
 }
-// }}}
-// {{{ Handle saving links and checking/setting cfChangesMade variable
+
+// Handle saving links and checking/setting cfChangesMade variable
 function saveLink(e, v)
 {
     var key = e.keyCode || e.which;
@@ -320,8 +321,8 @@ function saveLink(e, v)
         return false;
     }
 }
-// }}}
-// {{{ Function to start editing process
+
+// Function to start editing process
 function edit()
 {
     var overlay = document.getElementById("overlay"),
@@ -329,25 +330,25 @@ function edit()
     overlay.style.display   = "block";
     pop.style.display       = "block";
 }
-// }}}
-// {{{ Function to return the block of HTML for the custom Link
+
+// Function to return the block of HTML for the custom Link
 function linkHTML(elem, value)
 {
     return elem.innerHTML = [
         '<div class="customLink">',
-        '<a href="' + link(value, "link") + '">' + link(value, "client") + '</a>',
+        '<a href="' + link(value, "link") + '" title="' + value + '">' + link(value, "client") + '</a>',
         '</div>'
     ].join('');
 }
-// }}}
-// {{{ Function to return the custom link box to it's orig. state after edit
+
+// Function to return the custom link box to it's orig. state after edit
 function revertHTML(elem)
 {
     elem = document.getElementById(elem);
     return elem.innerHTML = '<span class="addLink">+</span>';
 }
-// }}}
-// {{{ Handle displaying links and creating a tags values for custom links
+
+// Handle displaying links and creating a tags values for custom links
 function link(l, linkType)
 {
     var pat = /^https?:\/\//i;
@@ -370,21 +371,24 @@ function link(l, linkType)
         return l;
     }
 }
-// }}}
-// {{{ Close popup
+
+// Close popup
 function killPop(pop)
 {
     var overlay = document.getElementById("overlay"),
         popLink = document.getElementById("addLinksPop"),
         popEdit = document.getElementById("editLinksPop");
     overlay.style.display = "none";
+    // Determine which overlay to close based on the
+    // function parameters.
     if(pop === 1)
     {
+        // Close links popup
         popLink.style.display = "none";   
     }
     else if(pop === 2)
     {
+        // Close edit popup
         popEdit.style.display = "none";
     }
 }
-// }}}

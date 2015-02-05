@@ -126,19 +126,20 @@ body{
 #search input[type=text] {
     width: 100%;
     height: 100%;
+    background-color: rgba(255,255,255,1);
     padding: 5px;
     font-size: 17px;
     border-radius: 0;
-    border: 1px solid #dee0e0;
+    border: 1px solid #8b9fa2;
     transition: all .4s ease;
 }
 
 #search input[type=text]:hover {
-    border: 1px solid #70bdff;
+    border: 1px solid #718284;
 }
 
 #search input[type=text]:focus {
-    border: 1px solid #008aff;
+    border: 1px solid #5b686a;
 }
 
 #inner {
@@ -148,15 +149,15 @@ body{
     max-height: 340px;
     margin: 15px auto 0;
     background-color: #fff;
-    border-left: 1px solid #DADADA;
-    border-right: 1px solid #DADADA;
-    border-bottom: 1px solid #DADADA;
+    border-left: 1px solid #8b9fa2;
+    border-right: 1px solid #8b9fa2;
+    border-bottom: 1px solid #8b9fa2;
 }
 
 #head {
     width: 100%;
     height: 50px;
-    border-top: 1px solid #DADADA;
+    border-top: 1px solid #8b9fa2;
     border-bottom: 1px solid #DADADA;
 }
 
@@ -351,7 +352,7 @@ body{
     background-color: #f4f4f4;
     position: relative;
     cursor: pointer;
-    border-bottom: 1px solid #dadada;
+    border-bottom: 1px solid #8b9fa2;
 }
 
 #editLinks:hover {
