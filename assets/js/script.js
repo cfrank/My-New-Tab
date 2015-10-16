@@ -193,8 +193,10 @@ function query(event, value)
     if(keyCode === K_ENTER)
     {
         // If the user has not changed the search engine
-        if(engineLink === null)
-            location.href = engines[0][1] + value;
+        if(engineLink === null){
+            engineLink = engines[0][1];
+            location.href = engineLink + v;
+        }
         
         // If the user has changed the search engine
         if(!engineLink !== null)
