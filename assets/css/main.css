@@ -1,0 +1,241 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif !important;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004) !important;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    outline: 0;
+}
+
+/*
+	Need to add 100% height to html and body
+	or else flexbox won't understand how large
+	the page is
+*/
+	
+html,
+body{
+	height: 100%;
+}
+
+/* 
+	This makes everything so damn easy.
+	The first version of my new tab page
+	was completely hacky, but this makes it so 
+	easy to style everything and remove the bugs which
+	were present in V1.
+*/
+
+.flexbox-container{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*
+	Overlay & Popup	
+*/
+
+#overlay{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.6);
+	display: none;
+	z-index: 0;
+}
+
+#popup{
+	width: 650px;
+	height: 400px;
+	display: none;
+	background-color: #fff;
+	border: 1px solid #9e9d9d;
+	z-index: 2000;
+}
+
+#pop-title{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #eeeded;
+}
+
+#pop-title p{
+	color: #373737;
+}
+
+#pop-container{
+	height: calc(400px - 30px - 1px);	
+}
+
+#newLink{
+	width: 450px;
+	height: 50px;
+	padding: 5px;
+	border: none;
+	font-size: 2em;
+	color: #898989;
+	text-align: center;
+}
+
+#page{
+	width: 100%;
+	height: 100%;
+	background-position: center center !important;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+}
+
+#container{
+	width: 570px;
+	height: auto;	
+}
+
+#favicon{
+	width: 100%;
+	text-align: center;
+}
+
+#search{
+	width: 100%;
+	height: 40px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+#search input[type="text"]{
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid #7c8e91;
+	padding: 5px;
+	font-size: 17px;
+}
+
+#search input[type="text"]:hover{
+	border: 1px solid #718284;
+}
+
+#search input[type="text"]:focus{
+	border: 1px solid #5b686a;
+}
+
+#links-container{
+	width: 100%;
+	height: 340px;
+	margin-top: 15px;
+	background-color: #fff;
+	border-top: 1px solid #7c8e91;
+	border-left: 1px solid #7c8e91;
+	border-right: 1px solid #7c8e91;
+}
+
+#title-box{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #dadada;
+	text-align: center;
+	line-height: 50px;
+	cursor: default;
+	background-color: #f4f3f3;
+}
+
+#title-box span{
+	color: #595959;
+}
+
+.links-box{
+	width: 90%;
+	margin: 0 auto 0;
+}
+
+#top{margin-top: 35px;}
+
+.link,
+.custom-link{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin-right: 101px;
+	background-size: cover;
+	cursor: pointer;
+	border-radius: 2px;
+}
+.link a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.link:last-child{
+	margin-right: 0;
+}
+
+#vk{background-image: url('../img/vk.png');}
+#fb{background-image: url('../img/fb.png');}
+#trans{
+	background-image: url('../img/trans.png');
+	border: 1px solid #dadada;
+}
+
+/* Custom link styling */
+
+#bottom{margin-top: 20px;}
+
+#custom-links-list li{
+	text-align: center;
+	line-height: 98px;
+	border: 1px dashed #c8c8c8;
+	overflow: hidden;
+}
+
+#custom-links-list li:hover{
+	background-color: #e9e9e9;
+	color: #c4bdbd;
+	border: 1px dashed #bebebe;
+}
+
+#custom-links-list li > a{
+	color: #c4bdbd;
+	transition: color .05s ease-in-out;
+	-moz-transition: color .05s ease-in-out;
+	-webkit-transition: color .05s ease-in-out;
+}
+
+#custom-links-list li > a:hover{
+	color: #a6a5a5;
+}
+
+#custom-links-list li span,
+#custom-links-list li a{
+	font-size: 4em;
+	font-family: monospace !important;
+	text-decoration: none;
+	color: #c8c8c8;
+	font-weight: lighter;
+}
+
+/* ============================= Links-edit box ============================= */
+
+#links-edit{
+	width: 100%;
+	height: 20px;
+	background-color: #f4f4f4;
+	border-left: 1px solid #7c8e91;
+	border-right: 1px solid #7c8e91;
+	border-bottom: 1px solid #7c8e91;
+	text-align: center;
+	line-height: 20px;
+	font-size: 0.7em;
+	cursor: pointer;
+}

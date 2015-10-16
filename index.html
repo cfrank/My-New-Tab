@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>~ New Tab</title>
+    <meta name="description" content="Welcome to new tab">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+	<!-- Overlay -->
+	<div id="overlay" class="flexbox-container">
+		<!-- Popup shell -->
+		<div id="popup">
+			<!-- Popup title -->
+			<div id="pop-title"></div>
+			<div id="pop-container" class="flexbox-container"></div>
+		</div>
+	</div>
+	<!-- 100% height/width container -->
+	<div id="page" class="flexbox-container">
+	    <!-- This is the main container which will hold everything -->
+		<div id="container">
+			<!-- Favicon of the search engine selected -->
+			<div id="favicon"></div>
+			<!-- Search -->
+			<div id="search"></div>
+			<!-- Box which will contain links -->
+			<div id="links-container">
+				<!-- Title box -->
+				<div id="title-box"><span>New Tab</span></div>
+				<!-- Pre-set links -->
+				<div class="links-box" id="top">
+					<ul class="links-list">
+						<li class="link" id="vk"><a href="http://www.vk.com/"></a></li>
+						<li class="link" id="fb"><a href="http://www.facebook.com/"></a></li>
+						<li class="link" id="trans"><a href="http://www.translate.google.com/"></a></li>
+					</ul>
+				</div>
+				<!-- Custom links go here -->
+				<div class="links-box" id="bottom">
+					<ul class="links-list" id="custom-links-list">
+						<li id="custom-one" class="link"><span class="addLink">+</span></li>
+						<li id="custom-two" class="link"><span class="addLink">+</span></li>
+						<li id="custom-three" class="link"><span class="addLink">+</span></li>
+					</ul>
+				</div>
+			</div>
+			<div id="links-edit">
+				<div id="js-link-edit">Edit</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/script.js"></script>
+</body>
+</html>
