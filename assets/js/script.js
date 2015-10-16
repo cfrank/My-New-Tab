@@ -263,11 +263,22 @@ function bubblingSpan()
             currentIndex    = childIndex;
             
             // Function to create the popup and add the link
-            openPopUp(1, "Add a link", listItem, childIndex);
+            openPopUp(1, "Add a link");
             return true;
         });
     });
 }
+
+/**
+ * Open edit popup
+ *
+ * @desc    Add an event listener to the edit button and open
+ *          the edit popup.
+ */
+document.getElementById("js-link-edit").addEventListener('click', function()
+{
+    openPopUp(2, "Edit a link");
+});
 
 /**
  * Initiate Links
@@ -313,25 +324,65 @@ function openPopUp(type, titleContent)
         title   = document.getElementById("pop-title"),
         cont    = document.getElementById("pop-container");
     
+    // Unhide all the divs
+    overlay.style.display   = "flex";
+    popup.style.display     = "block";
+    
+    // Add the title
+    title.innerHTML         = titleContent;
+    
     // Add link
     if(type === 1)
     {
-        // Unhide all the divs
-        overlay.style.display   = "flex";
-        popup.style.display     = "block";
-        
         // Add content
         var content = [
             '<input type="text" id="newLink" placeholder="Yandex.ua" onkeypress="saveLink(event, this.value)" autofocus autocomplete="off" />'
         ];
         
-        title.innerHTML = titleContent;
         cont.innerHTML  = content;
+        
         // Focus on the new input field
         document.getElementById("newLink").focus();
+    }
+    else if(type === 2)
+    {
+        var content = [
+            '<ul id="edit-links-ul">',
+            '<li class="edit-link">1</li>',
+            '<li class="edit-link">2</li>',
+            '<li class="edit-link">3</li>',
+            '</ul>'
+        ].join('');
         
+        cont.innerHTML = content;
+        
+        bubblingEditLinks();
     }
 }
+
+/**
+ * Bubbling function for edit links
+ *
+ * @desc    Add an event listener to all the edit links
+ *          And fire a remove custom link function on that link.
+ */
+ 
+function bubblingEditLinks()
+{
+    var elementUl = document.getElementById("edit-links-ul");
+    
+    Array.prototype.forEach.call(elementUl.children, function(el)
+    {
+        el.addEventListener('click', function()
+        {
+            var childIndex = Array.prototype.indexOf.call(this.parentNode.children, this);
+            
+            removeCustomLink(childIndex);
+        });
+    });
+}
+
+
 
 /**
  * Close a popup
@@ -383,6 +434,33 @@ function saveLink(event, value)
         // The user is just typing characters there is nothing to do.
         return;
     }
+}
+
+/**
+ * Remove Custom link
+ *
+ * @desc    Remove a custom link & update localStorage
+ *
+ * @param   {INT}    The links index in it's parent
+ */
+
+function removeCustomLink(linkIndex)
+{
+    // Set up an array with the custom links urls
+    var customLinkIds = ["custom-one", "custom-two", "custom-three"];
+    
+    // Remove the custom link from local storage
+    localStorage.removeItem('cf-newtab-custom-link-' + linkIndex);
+    
+    // Variable with the default html for the custom link
+    var defaultHTML = [
+        '<span class="addLink">+</span>'
+    ];
+    
+    // Remove the custom url from the page without needing reload
+    document.getElementById(customLinkIds[linkIndex]).innerHTML = defaultHTML;
+    
+    closePopUp();
 }
 
 /**
