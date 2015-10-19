@@ -396,8 +396,6 @@ function closePopUp()
 {
     var overlay = document.getElementById("overlay"),
         popup   = document.getElementById("popup"),
-        title   = document.getElementById("pop-title"),
-        cont    = document.getElementById("pop-container");
     
     overlay.style.display   = "none";
     popup.style.display     = "none";
