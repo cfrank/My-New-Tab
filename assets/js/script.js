@@ -211,9 +211,9 @@ function query(event, value)
                 var lang = ["ru", "en"];
                 // If the string is russian
                 if(/[а-яА-ЯЁё]/.test(value))
-                    window.location = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
+                    window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
                 else
-                    window.location = engineLink + 'c#auto/ru/' + value;
+                    window.location.href = engineLink + 'c#auto/ru/' + value;
             }
             else if(engineLink === engines[4][1])
             {
@@ -221,9 +221,9 @@ function query(event, value)
                     linkTest = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
                     
                 if(linkTest.test(value))
-                    window.location = url + value;
+                    window.location.href = url + value;
                 else
-                    window.location = engineLink + value;
+                    window.location.href = engineLink + value;
             }
             else
             {
