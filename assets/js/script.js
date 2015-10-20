@@ -195,7 +195,7 @@ function query(event, value)
         // If the user has not changed the search engine
         if(engineLink === null){
             engineLink = engines[0][1];
-            location.href = engineLink + value;
+            window.location.href = engineLink + value;
         }
         // If the user has changed the search engine
         else
@@ -203,7 +203,7 @@ function query(event, value)
             // If the search engine is not google translate or google images
             if(engineLink !== engines[3][1] && engineLink !== engines[4][1])
             {
-                location.href = engineLink + value;
+                window.location.href = engineLink + value;
             }
             // If the search engine link is google translate
             else if(engineLink === engines[3][1])
@@ -277,6 +277,7 @@ function bubblingSpan()
  * @desc    Add an event listener to the edit button and open
  *          the edit popup.
  */
+ 
 document.getElementById("js-link-edit").addEventListener('click', function()
 {
     openPopUp(2, "Edit a link");
@@ -384,8 +385,6 @@ function bubblingEditLinks()
     });
 }
 
-
-
 /**
  * Close a popup
  *
@@ -487,10 +486,9 @@ function setCustomLink(userInput)
         if(userInput.substring(0, 4) === "www.")
         {
             var testLink = "http://" + userInput;
+            
             if(linkTest.test(testLink))
-            {
                 userLink = testLink;    
-            }
         }
     }
     
@@ -514,9 +512,7 @@ function setCustomLink(userInput)
         
         // Create the custom link html
         var customLinkHtml = [
-            //'<li class="link custom">',
             '<a href="' + userLink + '" title="' + userLink + '">' + dispLink + '</a>'
-            //'</li>'
         ].join('');
         
         // Add to the HTML
