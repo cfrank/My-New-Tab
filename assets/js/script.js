@@ -195,11 +195,10 @@ function query(event, value)
         // If the user has not changed the search engine
         if(engineLink === null){
             engineLink = engines[0][1];
-            location.href = engineLink + v;
+            location.href = engineLink + value;
         }
-        
         // If the user has changed the search engine
-        if(!engineLink !== null)
+        else
         {
             // If the search engine is not google translate or google images
             if(engineLink !== engines[3][1] && engineLink !== engines[4][1])
@@ -226,7 +225,8 @@ function query(event, value)
                 else
                     window.location = engineLink + value;
             }
-            else{
+            else
+            {
                 // What the hell happened?
                 alert("ERROR: EngineLink is a incorrect value!!");
                 console.log("ERROR: EngineLink is a incorrect value!!");
@@ -395,7 +395,7 @@ function bubblingEditLinks()
 function closePopUp()
 {
     var overlay = document.getElementById("overlay"),
-        popup   = document.getElementById("popup"),
+        popup   = document.getElementById("popup");
     
     overlay.style.display   = "none";
     popup.style.display     = "none";
