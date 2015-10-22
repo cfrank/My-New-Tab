@@ -6,7 +6,7 @@ var useSearch       = true, // Should there be a search bar present?
 
 
 /* Constants */
-const K_ESC = 27; // Escape key
+const K_ESC   = 27; // Escape key
 const K_ENTER = 13; // Enter keycode
 const K_SPACE = 32; // Space keycode
 
@@ -100,7 +100,7 @@ function background()
         ],
         bgMaxLength = backgrounds.length - 1,
         // Get a random number between 0 and backgroundMaxNumber
-        randomInt = Math.floor(Math.random()*(bgMaxLength - 0 + 1) + 0);
+        randomInt   = Math.floor(Math.random()*(bgMaxLength - 0 + 1) + 0);
     
     // Add the image to the page
     grabPage.style.backgroundImage = 'url(' + backgrounds[randomInt] + ')';
@@ -123,7 +123,7 @@ function initSearch(useSearch)
     if(useSearch)
     {
         // Create the search bar in HTML
-        var searchHTML =    '<input type="text" id="q" value="" onpaste="query(event, this.value);" onkeypress="query(event, this.value);" autofocus autocomplete="off" />';
+        var searchHTML = '<input type="text" id="q" value="" onpaste="query(event, this.value);" onkeypress="query(event, this.value);" autofocus autocomplete="off" />';
         
         // Add the searh bar to the page
         grabSearch.innerHTML = searchHTML;
@@ -259,8 +259,8 @@ function bubblingSpan()
                 return;
             
             // Get the index value of the custom-link inside the parent.
-            var childIndex = Array.prototype.indexOf.call(this.parentNode.children, this),
-                listItem = customUL.children[childIndex];
+            var childIndex  = Array.prototype.indexOf.call(this.parentNode.children, this),
+                listItem    = customUL.children[childIndex];
             
             // Save these variables globally for use later
             currentItem     = listItem;
