@@ -4,6 +4,13 @@ var useSearch       = true, // Should there be a search bar present?
     currentItem     = null, // The currently changing LI
     currentIndex    = null; // The currentItems index in the <ul> stack 
 
+
+/* Constants */
+const K_ESC = 27; // Escape key
+const K_ENTER = 13; // Enter keycode
+const K_SPACE = 32; // Space keycode
+
+
 /**
  * Keycode function
  *
@@ -53,8 +60,7 @@ document.body.onload = function()
  
 document.body.onkeydown = function(event)
 {
-    var keyCode = getKeycode(event),
-        K_ESC = 27;
+    var keyCode = getKeycode(event);
     if(keyCode !== K_ESC)
     {
         return;
@@ -150,9 +156,7 @@ function initSearch(useSearch)
 function query(event, value)
 {   
     var keyCode = getKeycode(event),
-        input = document.getElementById("q"),
-        K_ENTER = 13, // Enter keycode
-        K_SPACE = 32; // Space keycode
+        input = document.getElementById("q");
     
     // Search Engines
     var engines = [
@@ -411,8 +415,7 @@ function closePopUp()
  
 function saveLink(event, value)
 {
-    var keyCode = getKeycode(event),
-        K_ENTER = 13;
+    var keyCode = getKeycode(event);
 
     if(keyCode === K_ENTER)
     {
