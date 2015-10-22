@@ -82,21 +82,19 @@ document.body.onkeydown = function(event)
 
 function background()
 {
-    var grabPage            = document.getElementById("page"),
-        backgroundMaxNum    = 5;
-    
-    // Background file array
-    var backgrounds = [
-        'assets/img/bg/background1.jpg',
-        'assets/img/bg/background2.jpg',
-        'assets/img/bg/background3.jpg',
-        'assets/img/bg/background4.jpg',
-        'assets/img/bg/background5.jpg',
-        'assets/img/bg/background6.jpg'
-    ];
-    
-    // Get a random number between 0 and backgroundMaxNumber
-    var randomInt = Math.floor(Math.random()*(backgroundMaxNum - 0 + 1) + 0);
+    var grabPage    = document.getElementById("page"),
+        // Background file array
+        backgrounds = [
+            'assets/img/bg/background1.jpg',
+            'assets/img/bg/background2.jpg',
+            'assets/img/bg/background3.jpg',
+            'assets/img/bg/background4.jpg',
+            'assets/img/bg/background5.jpg',
+            'assets/img/bg/background6.jpg'
+        ],
+        bgMaxLength = backgrounds.length - 1,
+        // Get a random number between 0 and backgroundMaxNumber
+        randomInt = Math.floor(Math.random()*(bgMaxLength - 0 + 1) + 0);
     
     // Add the image to the page
     grabPage.style.backgroundImage = 'url(' + backgrounds[randomInt] + ')';
