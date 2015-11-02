@@ -341,10 +341,19 @@ function openPopUp(type, titleContent)
     {
         // Add content
         var content = [
-            '<input type="text" id="newLink" placeholder="Yandex.ua" onkeypress="saveLink(event, this.value)" autofocus autocomplete="off" />'
+            '<input type="text" id="newLink" placeholder="Yandex.ua" autofocus autocomplete="off" />'
         ];
         
         cont.innerHTML  = content;
+        
+        /*
+            If running this site inside a Google Chrome Extension their security
+            settings will not allow you to make use of the 'onkeypress' inline script
+            inside the input tag.       */
+        document.getElementById("newLink").onkeypress = function(e)
+        {
+            saveLink(e, this.value);
+        }
         
         // Focus on the new input field
         document.getElementById("newLink").focus();
