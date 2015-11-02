@@ -349,7 +349,8 @@ function openPopUp(type, titleContent)
         /*
             If running this site inside a Google Chrome Extension their security
             settings will not allow you to make use of the 'onkeypress' inline script
-            inside the input tag.       */
+            inside the input tag.
+        */
         document.getElementById("newLink").onkeypress = function(e)
         {
             saveLink(e, this.value);
