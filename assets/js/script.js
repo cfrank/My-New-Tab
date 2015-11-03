@@ -427,23 +427,11 @@ function saveLink(event, value)
 {
     var keyCode = getKeycode(event);
 
+    // If the user hits enter send the value to be saved into localhost
     if(keyCode === K_ENTER)
-    {
-        /*
-            - Runs a validation check on the url
-            - If it fails tries to fix the url to make it work
-            - If it can fix it, create html structure for custom link
-            - Adds that to the HTML
-            - Runs local storage setter function
-            - Closes overly / popup
-        */
-        setCustomLink(value);
-    }
+    	setCustomLink(value);
     else
-    {
-        // The user is just typing characters there is nothing to do.
-        return;
-    }
+    	return;
 }
 
 /**
