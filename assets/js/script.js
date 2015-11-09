@@ -71,8 +71,7 @@ document.body.onkeydown = function(event)
         if(overlay.style.display !== "none")
         {
             // hide all the divs
-            overlay.style.display   = "none";
-            popup.style.display     = "none";   
+            closePopUp(); 
         }
         else
             return;
@@ -326,12 +325,13 @@ function openPopUp(type, titleContent)
 {
     var overlay = document.getElementById("overlay"),
         popup   = document.getElementById("popup"),
+        popcont	= document.getElementById("popup-container-out"),
         title   = document.getElementById("pop-title"),
         cont    = document.getElementById("pop-container");
     
     // Unhide all the divs
-    overlay.style.display   = "flex";
-    popup.style.display     = "block";
+    overlay.style.display = popup.style.display = "block";
+    popcont.style.display = "flex";
     
     // Add the title
     title.innerHTML         = titleContent;
@@ -373,6 +373,14 @@ function openPopUp(type, titleContent)
         
         bubblingEditLinks();
     }
+    /*
+	    Add an event listener on the overlay to allow
+	    closing of the popup
+	*/
+	document.getElementById("overlay").addEventListener('click', function()
+	{
+		closePopUp();
+	});
 }
 
 /**
@@ -406,10 +414,13 @@ function bubblingEditLinks()
 function closePopUp()
 {
     var overlay = document.getElementById("overlay"),
-        popup   = document.getElementById("popup");
+        popup   = document.getElementById("popup"),
+        popcont	= document.getElementById("popup-container-out");
     
-    overlay.style.display   = "none";
-    popup.style.display     = "none";
+    overlay.style.display = popup.style.display = popcont.style.display = "none";
+    
+    // Clear memory
+    document.getElementById("pop-container").innerHTML = document.getElementById("pop-title").innerHTML = null;
 }
 
 /**
