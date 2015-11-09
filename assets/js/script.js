@@ -67,8 +67,7 @@ document.body.onkeydown = function(event)
     }
     else
     {
-        // TODO: This will run once. Need to make it never run when not needed.
-        if(overlay.style.display !== "none")
+        if(document.getElementById("overlay").style.display !== "none")
         {
             // hide all the divs
             closePopUp(); 
