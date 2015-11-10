@@ -61,19 +61,13 @@ document.body.onload = function()
 document.body.onkeydown = function(event)
 {
     var keyCode = getKeycode(event);
-    if(keyCode !== K_ESC)
+    if(keyCode !== K_ESC || document.getElementById("overlay").style.display === "none")
     {
         return;
     }
     else
     {
-        if(document.getElementById("overlay").style.display !== "none")
-        {
-            // hide all the divs
-            closePopUp(); 
-        }
-        else
-            return;
+        closePopUp();
     }
 }
 
