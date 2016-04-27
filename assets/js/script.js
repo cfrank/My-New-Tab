@@ -23,7 +23,7 @@ const K_SPACE = 32; // Space keycode
  
 function getKeycode(event)
 {
-    if(!event) var event = window.event;
+    if(!event) event = window.event;
     return event.keyCode || event.which;
 }
 
@@ -33,8 +33,8 @@ function getKeycode(event)
  * @desc    Loads functions on page load that
  *          aren't fired from an event.
  */
- 
-document.body.onload = function()
+
+document.addEventListener('DOMContentLoaded', function()
 {
     // Sets the background
     background();
@@ -50,18 +50,18 @@ document.body.onload = function()
     initLinks();
     
     return 1;
-}
+});
 
 /**
  * Popup close
  *
  * @desc    Closes the popup and removes the overlay
  */
- 
-document.body.onkeydown = function(event)
+
+document.addEventListener('keydown', function(event)
 {
     var keyCode = getKeycode(event);
-    if(keyCode !== K_ESC || document.getElementById("overlay").style.display === "none")
+    if(keyCode !== K_ESC || document.getElementById('overlay').style.display === 'none')
     {
         return;
     }
@@ -69,7 +69,7 @@ document.body.onkeydown = function(event)
     {
         closePopUp();
     }
-}
+});
 
 /**
  * Background setter
@@ -80,7 +80,7 @@ document.body.onkeydown = function(event)
 
 function background()
 {
-    var grabPage    = document.getElementById("page"),
+    var grabPage    = document.getElementById('page'),
         // Background file array
         backgrounds = [
             'assets/img/bg/background1.jpg',
@@ -90,9 +90,9 @@ function background()
             'assets/img/bg/background5.jpg',
             'assets/img/bg/background6.jpg'
         ],
-        bgMaxLength = backgrounds.length - 1,
+        bgMaxLength = backgrounds.length,
         // Get a random number between 0 and backgroundMaxNumber
-        randomInt   = Math.floor(Math.random()*(bgMaxLength - 0 + 1) + 0);
+        randomInt   = Math.floor(Math.random()*(bgMaxLength) + 0);
     
     // Add the image to the page
     grabPage.style.backgroundImage = 'url(' + backgrounds[randomInt] + ')';
@@ -110,27 +110,33 @@ function background()
 function initSearch(useSearch)
 {
     // Get the search div
-    var grabSearch = document.getElementById("search");
+    var grabSearch = document.getElementById('search');
     
     if(useSearch)
     {
         // Create the search bar in HTML
-        var searchHTML = '<input type="text" id="q" value="" onpaste="query(event, this.value);" onkeypress="query(event, this.value);" autofocus autocomplete="off" />';
+        var searchHTML = '<input type="text" id="q" value="" autofocus autocomplete="off" />';
         
         // Add the searh bar to the page
         grabSearch.innerHTML = searchHTML;
+
+        // Add an event listener on the search bar
+        document.getElementById('q').addEventListener('keypress', function(e)
+        {
+            query(e, this.value);
+        });
         
         // Focus on the newly created search bar (Must be last)
-        document.getElementById("q").focus();
+        document.getElementById('q').focus();
     }
     else
     {
         // Remove the height css from the search div
-        grabSearch.style.height = "0px";
+        grabSearch.style.height = '0px';
         // Remove the margin top on the links container
-        document.getElementById("links-container").style.marginTop = "0px";
+        document.getElementById('links-container').style.marginTop = '0px';
         // Output that we are not using the search bar
-        console.log("Not using Search bar");
+        console.log('Not using Search bar');
     }
 }
 
@@ -148,22 +154,22 @@ function initSearch(useSearch)
 function query(event, value)
 {   
     var keyCode = getKeycode(event),
-        input = document.getElementById("q");
+        input = document.getElementById('q');
     
     // Search Engines
     var engines = [
         //  [Key Code], [Search URL],   [Home Page Link],   [Favicon]
-        ["",    "https://www.google.com/#q=",                       "https://www.google.com",           "https://www.google.com/favicon.ico"],
-        ["!d",  "https://www.duckduckgo.com/?q=",                   "https://www.duckduckgo.com",       "http://www.cfrank.org/f/0RIxiU.ico"],
-        ["!g",  "https://www.google.com/#q=",                       "https://www.google.com",           "https://www.google.com/favicon.ico"],
-        ["!t",  "https://translate.google.com/?vi=",                "https://translate.google.com/",    "https://translate.google.com/favicon.ico"],
-        ["!i",  "https://www.google.com/search?tbm=isch&q=",        "https://www.images.google.com",    "https://www.google.com/favicon.ico"],
-        ["!y",  "https://www.youtube.com/results?search_query=",    "https://www.youtube.com",          "https://youtube.com/favicon.ico"],
-        ["!w",  "https://en.wikipedia.org/w/index.php?search=",     "https://www.en.wikipedia.org",     "http://en.wikipedia.org/favicon.ico"]
+        ['',    'https://www.google.com/#q=',                       'https://www.google.com',           'https://www.google.com/favicon.ico'],
+        ['!d',  'https://www.duckduckgo.com/?q=',                   'https://www.duckduckgo.com',       'https://duckduckgo.com/favicon.ico'],
+        ['!g',  'https://www.google.com/#q=',                       'https://www.google.com',           'https://www.google.com/favicon.ico'],
+        ['!t',  'https://translate.google.com/?vi=',                'https://translate.google.com/',    'https://translate.google.com/favicon.ico'],
+        ['!i',  'https://www.google.com/search?tbm=isch&q=',        'https://www.images.google.com',    'https://www.google.com/favicon.ico'],
+        ['!y',  'https://www.youtube.com/results?search_query=',    'https://www.youtube.com',          'https://youtube.com/favicon.ico'],
+        ['!w',  'https://en.wikipedia.org/w/index.php?search=',     'https://www.en.wikipedia.org',     'http://en.wikipedia.org/favicon.ico']
     ];
     
     // Check if the user is requesting a search engine
-    if(value.length === 2 && keyCode === K_SPACE && value.lastIndexOf("!") !== -1)
+    if(value.length === 2 && keyCode === K_SPACE && value.lastIndexOf('!') !== -1)
     {
         for(var i = 1; i <= engines.length - 1; ++i)
         {
@@ -173,10 +179,10 @@ function query(event, value)
                 event.preventDefault(); // Prevent adding a space being added to the query
                 engineLink = engines[i][1]; // Change the engineLink to the new search engine
                 var engineIcon = '<a href="' + engines[i][2] + '"><img src="' + engines[i][3] + '" width="16" height="16" /></a>',
-                    grabFavIcon = document.getElementById("favicon");
+                    grabFavIcon = document.getElementById('favicon');
                 
                 grabFavIcon.innerHTML = engineIcon; // Add the favicon to the page
-                input.value = ""; // Clear the input
+                input.value = ''; // Clear the input
                 
                 return 1; // Return true so it doesn't keep looping through the entire SE list
             }
@@ -202,7 +208,7 @@ function query(event, value)
             // If the search engine link is google translate
             else if(engineLink === engines[3][1])
             {
-                var lang = ["ru", "en"];
+                var lang = ['ru', 'en'];
                 // If the string is russian
                 if(/[а-яА-ЯЁё]/.test(value))
                     window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
@@ -211,7 +217,7 @@ function query(event, value)
             }
             else if(engineLink === engines[4][1])
             {
-                var url = "https://www.google.com/searchbyimage?image_url=",
+                var url = 'https://www.google.com/searchbyimage?image_url=',
                     linkTest = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
                     
                 if(linkTest.test(value))
@@ -222,9 +228,9 @@ function query(event, value)
             else
             {
                 // What the hell happened?
-                alert("ERROR: EngineLink is a incorrect value!!");
-                console.log("ERROR: EngineLink is a incorrect value!!");
-                return false;
+                alert('ERROR: EngineLink is a incorrect value!!');
+                console.log('ERROR: EngineLink is a incorrect value!!');
+                return 0;
             }
         }
     }
@@ -239,7 +245,7 @@ function query(event, value)
 function bubblingSpan()
 {
     // Get the container of the links
-    var customUL = document.getElementById("custom-links-list");
+    var customUL = document.getElementById('custom-links-list');
     
     Array.prototype.forEach.call(customUL.children, function(el)
     {
@@ -247,7 +253,7 @@ function bubblingSpan()
         el.addEventListener('click', function()
         {
             // If the element contains a custom link don't open the pop-up
-            if(el.childNodes[0].nodeName === "A")
+            if(el.childNodes[0].nodeName === 'A')
                 return;
             
             // Get the index value of the custom-link inside the parent.
@@ -259,7 +265,7 @@ function bubblingSpan()
             currentIndex    = childIndex;
             
             // Function to create the popup and add the link
-            openPopUp(1, "Add a link");
+            openPopUp(1, 'Add a link');
             return true;
         });
     });
@@ -272,9 +278,9 @@ function bubblingSpan()
  *          the edit popup.
  */
  
-document.getElementById("js-link-edit").addEventListener('click', function()
+document.getElementById('js-link-edit').addEventListener('click', function()
 {
-    openPopUp(2, "Edit a link");
+    openPopUp(2, 'Edit a link');
 });
 
 /**
@@ -296,7 +302,7 @@ function initLinks()
         if(localStorage.getItem('cf-newtab-custom-link-' + i) !== null)
         {
             var parsedContent   = JSON.parse(localStorage.getItem('cf-newtab-custom-link-' + i)),
-                customIds       = ["custom-one", "custom-two", "custom-three"];
+                customIds       = ['custom-one', 'custom-two', 'custom-three'];
             var htmlContent = [
                 '<a id="hello" href="' + parsedContent[0] + '" title="' + parsedContent[0] + '">' + parsedContent[1] + '</a>'
             ];
@@ -316,18 +322,18 @@ function initLinks()
  
 function openPopUp(type, titleContent)
 {
-    var overlay = document.getElementById("overlay"),
-        popup   = document.getElementById("popup"),
-        popcont	= document.getElementById("popup-container-out"),
-        title   = document.getElementById("pop-title"),
-        cont    = document.getElementById("pop-container");
+    var overlay = document.getElementById('overlay'),
+        popup   = document.getElementById('popup'),
+        popcont    = document.getElementById('popup-container-out'),
+        title   = document.getElementById('pop-title'),
+        cont    = document.getElementById('pop-container');
     
     // Unhide all the divs
-    overlay.style.display = popup.style.display = "block";
-    popcont.style.display = "flex";
+    overlay.style.display = popup.style.display = 'block';
+    popcont.style.display = 'flex';
     
     // Add the title
-    title.innerHTML         = titleContent;
+    title.innerHTML = titleContent;
     
     // Add link
     if(type === 1)
@@ -344,13 +350,13 @@ function openPopUp(type, titleContent)
             settings will not allow you to make use of the 'onkeypress' inline script
             inside the input tag.
         */
-        document.getElementById("newLink").onkeypress = function(e)
+        document.getElementById('newLink').onkeypress = function(e)
         {
             saveLink(e, this.value);
         }
         
         // Focus on the new input field
-        document.getElementById("newLink").focus();
+        document.getElementById('newLink').focus();
     }
     else if(type === 2)
     {
@@ -367,13 +373,13 @@ function openPopUp(type, titleContent)
         bubblingEditLinks();
     }
     /*
-	    Add an event listener on the overlay to allow
-	    closing of the popup
-	*/
-	document.getElementById("overlay").addEventListener('click', function()
-	{
-		closePopUp();
-	});
+        Add an event listener on the overlay to allow
+        closing of the popup
+    */
+    document.getElementById('overlay').addEventListener('click', function()
+    {
+        closePopUp();
+    });
 }
 
 /**
@@ -385,7 +391,7 @@ function openPopUp(type, titleContent)
  
 function bubblingEditLinks()
 {
-    var elementUl = document.getElementById("edit-links-ul");
+    var elementUl = document.getElementById('edit-links-ul');
     
     Array.prototype.forEach.call(elementUl.children, function(el)
     {
@@ -406,14 +412,14 @@ function bubblingEditLinks()
 
 function closePopUp()
 {
-    var overlay = document.getElementById("overlay"),
-        popup   = document.getElementById("popup"),
-        popcont	= document.getElementById("popup-container-out");
+    var overlay = document.getElementById('overlay'),
+        popup   = document.getElementById('popup'),
+        popcont    = document.getElementById('popup-container-out');
     
-    overlay.style.display = popup.style.display = popcont.style.display = "none";
+    overlay.style.display = popup.style.display = popcont.style.display = 'none';
     
     // Clear memory
-    document.getElementById("pop-container").innerHTML = document.getElementById("pop-title").innerHTML = null;
+    document.getElementById('pop-container').innerHTML = document.getElementById('pop-title').innerHTML = null;
 }
 
 /**
@@ -433,9 +439,9 @@ function saveLink(event, value)
 
     // If the user hits enter send the value to be saved into localhost
     if(keyCode === K_ENTER)
-    	setCustomLink(value);
+        setCustomLink(value);
     else
-    	return;
+        return;
 }
 
 /**
@@ -449,7 +455,7 @@ function saveLink(event, value)
 function removeCustomLink(linkIndex)
 {
     // Set up an array with the custom links urls
-    var customLinkIds = ["custom-one", "custom-two", "custom-three"];
+    var customLinkIds = ['custom-one', 'custom-two', 'custom-three'];
     
     // Remove the custom link from local storage
     localStorage.removeItem('cf-newtab-custom-link-' + linkIndex);
@@ -486,9 +492,9 @@ function setCustomLink(userInput)
     else
     {
         // Check if it begins with www.
-        if(userInput.substring(0, 4) === "www.")
+        if(userInput.substring(0, 4) === 'www.')
         {
-            var testLink = "http://" + userInput;
+            var testLink = 'http://' + userInput;
             
             if(linkTest.test(testLink))
                 userLink = testLink;    
@@ -497,14 +503,14 @@ function setCustomLink(userInput)
     
     if(userLink === null)
     {
-        alert("Please enter a valid link (http://www.google.com)"); 
+        alert('Please enter a valid link (http://www.google.com)'); 
         return false;
     }
     // From now we can assume the link is semi-correct
     else
     {
         // Remove any link infomation (http, https, www)
-        var disallowed = ["http://", "https://", "www."];
+        var disallowed = ['http://', 'https://', 'www.'];
         for(var i = 0; i < disallowed.length; ++i)
         {
             if(dispLink === null)
@@ -542,7 +548,7 @@ function setCusomLinkLocalStorage(userLink, dispLink)
 {
     // If the changes made localstorage variable is not set, set it
     if(localStorage.getItem('cf-newtab-changes-made') === null)
-        localStorage.setItem('cf-newtab-changes-made', "true")
+        localStorage.setItem('cf-newtab-changes-made', 'true')
     
     // Create an array of the content which makes up the link
     var customLinkData = [userLink, dispLink];
