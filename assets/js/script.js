@@ -16,7 +16,7 @@ const K_SPACE = 32; // Space keycode
  *
  * @desc    Gets the keycode from the keyboard event
  *
- * @param   {Object}        The keyboard event
+ * @param   {Object}    The keyboard event
  *
  * @return  {INT}
  */
@@ -479,7 +479,7 @@ function removeCustomLink(linkIndex)
  
 function setCustomLink(userInput)
 {
-    var linkTest = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+    var linkTest = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
         userLink = null, // The valid external link
         dispLink = null; // The string to display to the user
         
