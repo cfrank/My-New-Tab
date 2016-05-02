@@ -194,8 +194,7 @@ function query(event, value)
     {
         // If the user has not changed the search engine
         if(engineLink === null){
-            engineLink = engines[0][1];
-            window.location.href = engineLink + value;
+            window.location.href = engines[0][1] + value;
         }
         // If the user has changed the search engine
         else
