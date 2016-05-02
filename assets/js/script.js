@@ -266,6 +266,7 @@ function bubblingSpan()
             
             // Function to create the popup and add the link
             openPopUp(1, 'Add a link');
+
             return true;
         });
     });
@@ -324,13 +325,14 @@ function openPopUp(type, titleContent)
 {
     var overlay = document.getElementById('overlay'),
         popup   = document.getElementById('popup'),
-        popcont    = document.getElementById('popup-container-out'),
+        popcont = document.getElementById('popup-container-out'),
         title   = document.getElementById('pop-title'),
         cont    = document.getElementById('pop-container');
     
     // Unhide all the divs
-    overlay.style.display = popup.style.display = 'block';
-    popcont.style.display = 'flex';
+    overlay.style.display = 'block';
+    popup.style.display = 'block';
+    popcont.style.display = 'block';
     
     // Add the title
     title.innerHTML = titleContent;
@@ -414,12 +416,13 @@ function closePopUp()
 {
     var overlay = document.getElementById('overlay'),
         popup   = document.getElementById('popup'),
-        popcont    = document.getElementById('popup-container-out');
+        popcont = document.getElementById('popup-container-out');
     
     overlay.style.display = popup.style.display = popcont.style.display = 'none';
     
     // Clear memory
-    document.getElementById('pop-container').innerHTML = document.getElementById('pop-title').innerHTML = null;
+    document.getElementById('pop-container').innerHTML = null;
+    document.getElementById('pop-title').innerHTML = null;
 }
 
 /**
@@ -522,7 +525,7 @@ function setCustomLink(userInput)
         // Create the custom link html
         var customLinkHtml = [
             '<a href="' + userLink + '" title="' + userLink + '">' + dispLink + '</a>'
-        ].join('');
+        ];
         
         // Add to the HTML
         currentItem.innerHTML = customLinkHtml;

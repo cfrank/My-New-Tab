@@ -42,14 +42,26 @@ body{
 	Overlay & Popup	
 */
 
-#overlay,
-#popup-container-out{
+#overlay{
 	width: 100%;
 	height: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
 	display: none;
+}
+
+#popup-container-out{
+	width: 650px;
+	height: auto;
+	position: absolute;
+	margin: 0 auto;
+	text-align: center;
+	top: 50%;
+	left: 0;
+	right: 0;
+	transform: translateY(-50%);
+	z-index: 2;
 }
 
 #overlay{
