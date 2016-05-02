@@ -197,40 +197,36 @@ function query(event, value)
             window.location.href = engines[0][1] + value;
         }
         // If the user has changed the search engine
+        else if(engineLink !== engines[3][1] && engineLink !== engines[4][1])
+        {
+            window.location.href = engineLink + value;
+        }
+        // If the search engine is google translate
+        else if(engineLink === engines[3][1])
+        {
+            var lang = ['ru', 'en'];
+            // If the string is Russian
+            if(/[а-яА-ЯЁё]/.test(value))
+                window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
+            else
+                window.location.href = engineLink + 'c#auto/ru/' + value;
+        }
+        else if(engineLink === engines[4][1])
+        {
+            var url = 'https://www.google.com/searchbyimage?image_url=',
+                linkTest = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
+            if(linkTest.test(value))
+                window.location.href = url + value;
+            else
+                window.location.href = engineLink + value;
+        }
         else
         {
-            // If the search engine is not google translate or google images
-            if(engineLink !== engines[3][1] && engineLink !== engines[4][1])
-            {
-                window.location.href = engineLink + value;
-            }
-            // If the search engine link is google translate
-            else if(engineLink === engines[3][1])
-            {
-                var lang = ['ru', 'en'];
-                // If the string is russian
-                if(/[а-яА-ЯЁё]/.test(value))
-                    window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
-                else
-                    window.location.href = engineLink + 'c#auto/ru/' + value;
-            }
-            else if(engineLink === engines[4][1])
-            {
-                var url = 'https://www.google.com/searchbyimage?image_url=',
-                    linkTest = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-                    
-                if(linkTest.test(value))
-                    window.location.href = url + value;
-                else
-                    window.location.href = engineLink + value;
-            }
-            else
-            {
-                // What the hell happened?
-                alert('ERROR: EngineLink is a incorrect value!!');
-                console.log('ERROR: EngineLink is a incorrect value!!');
-                return 0;
-            }
+            // What the hell happened?
+            alert('ERROR: EngineLink is a incorrect value!!');
+            console.log('ERROR: EngineLink is a incorrect value!!');
+            return 0;
         }
     }
 }
