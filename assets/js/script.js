@@ -300,7 +300,7 @@ function initLinks()
             var parsedContent   = JSON.parse(localStorage.getItem('cf-newtab-custom-link-' + i)),
                 customIds       = ['custom-one', 'custom-two', 'custom-three'];
             var htmlContent = [
-                '<a id="hello" href="' + parsedContent[0] + '" title="' + parsedContent[0] + '">' + parsedContent[1] + '</a>'
+                '<a href="' + parsedContent[0] + '" title="' + parsedContent[0] + '">' + parsedContent[1] + '</a>'
             ];
             document.getElementById(customIds[i]).innerHTML = htmlContent;
         }
@@ -312,8 +312,8 @@ function initLinks()
  *
  * @desc    Opens a popup and adds the appropriate content
  *
- * @param   {INT}           Determines the type of popup (1: Add link, 2: Edit link)
- * @param   {STRING}        The string to put into the title
+ * @param   {INT}       Determines the type of popup (1: Add link, 2: Edit link)
+ * @param   {STRING}    The string to put into the title
  */
  
 function openPopUp(type, titleContent)
@@ -427,8 +427,8 @@ function closePopUp()
  *          form field. This will only do anything if the user
  *          hits the enter key though.
  *
- * @param   {Object}        The keyboard event
- * @param   {STRING}        The value of the input field
+ * @param   {Object}    The keyboard event
+ * @param   {STRING}    The value of the input field
  */
  
 function saveLink(event, value)
