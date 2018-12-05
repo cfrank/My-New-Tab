@@ -211,7 +211,7 @@ function query(event, value)
             if(/[а-яА-ЯЁё]/.test(value))
                 window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + encodedValue;
             else
-                window.location.href = engineLink + 'c#auto/ru/' + value;
+                window.location.href = engineLink + 'c#auto/ru/' + encodedValue;
         }
         else if(engineLink === engines[4][1])
         {
