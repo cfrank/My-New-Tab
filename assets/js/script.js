@@ -184,7 +184,7 @@ function query(event, value)
                 grabFavIcon.innerHTML = engineIcon; // Add the favicon to the page
                 input.value = ''; // Clear the input
                 
-                return 1; // Return true so it doesn't keep looping through the entire SE list
+                return true; // Return true so it doesn't keep looping through the entire SE list
             }
         }
     }
@@ -192,14 +192,16 @@ function query(event, value)
     
     if(keyCode === K_ENTER)
     {
+        const encodedValue = encodeURIComponent(value);
+
         // If the user has not changed the search engine
         if(engineLink === null){
-            window.location.href = engines[0][1] + value;
+            window.location.href = engines[0][1] + encodedValue;
         }
         // If the user has changed the search engine
         else if(engineLink !== engines[3][1] && engineLink !== engines[4][1])
         {
-            window.location.href = engineLink + value;
+            window.location.href = engineLink + encodedValue;
         }
         // If the search engine is google translate
         else if(engineLink === engines[3][1])
@@ -207,7 +209,7 @@ function query(event, value)
             var lang = ['ru', 'en'];
             // If the string is Russian
             if(/[а-яА-ЯЁё]/.test(value))
-                window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + value;
+                window.location.href = engineLink + 'c#' + lang[0] + '/' + lang[1] + '/' + encodedValue;
             else
                 window.location.href = engineLink + 'c#auto/ru/' + value;
         }
@@ -217,15 +219,15 @@ function query(event, value)
                 linkTest = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
             if(linkTest.test(value))
-                window.location.href = url + value;
+                window.location.href = url + encodedValue;
             else
-                window.location.href = engineLink + value;
+                window.location.href = engineLink + encodedValue;
         }
         else
         {
             // What the hell happened?
             alert('ERROR: EngineLink is a incorrect value!!');
-            console.log('ERROR: EngineLink is a incorrect value!!');
+            console.error('ERROR: EngineLink is a incorrect value!!');
             return 0;
         }
     }
